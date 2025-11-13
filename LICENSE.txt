@@ -1,0 +1,25 @@
+License
+
+Copyright (c) 2025 Gódor Zoárd
+
+-A folytatással és a letöltéssel elfogadod az alábbi szerződés tartalmát.
+
+-A felhasználó aki hozzájut a programhoz, saját felhasználásra
+engedélyezett a program felbontása, tanulmányozása, átírásra. Ezt a módosított appot terjeszteni tilos, a tervező (Gódor Zoárd) írásos engedélye nélkül.
+
+-A Szoftver kereskedelmi forgalomba hozatala, kereskedelmi értékesítése,
+allicencelése kereskedelmi célokra, vagy a Szoftvernek olyan termékekbe vagy
+szolgáltatásokba történő beépítése, amelyekért díjat számítanak fel, kifejezetten
+tilos a szerző (Gódor Zoárd) előzetes, írásos engedélye nélkül. Pontosításképp:
+a Szoftver fizetős termék részeként való terjesztése, a Szoftverhez való hozzáférés
+díjazása, vagy bármilyen módon történő közvetlen vagy közvetett kereskedelmi
+bevételszerzés a Szoftverből a szerző kifejezett írásos engedélyét igényli.
+
+-A SZOFTVER „AHOGY VAN” ALAPON KERÜL SZOLGÁLTATÁSRA, MINDENFÉLE GARANCIA
+NÉLKÜL, KIFEJEZETT VAGY BELEÉRTETT FORMÁBAN, BELEÉRTVE, DE NEM KORLÁTOZVA AZ
+ELADHATÓSÁGRA, ADOTT CÉLRA VALÓ ALKALMASSÁGRA ÉS JOGSÉRTÉS-MENTESSÉGRE VONATKOZÓ
+GARANCIÁKAT. SEMMILYEN ESETBEN SEM VONHATÓ FELELŐSSÉGRE A SZERZŐ VAGY A
+SZERZŐI JOG TULAJDONOSA SEMMILYEN KÁRÉRT VAGY EGYÉB FELELŐSSÉGÉRT, AKÁR
+SZERZŐDÉS, KÁROSODÁS VAGY MÁS JOGI ELJÁRÁS KERETÉBEN, AMELY A SZOFTVERBŐL,
+A SZOFTVER HASZNÁLATÁBÓL VAGY A SZOFTVERREL KAPCSOLATOS EGYÉB ÜGYLETEKBŐL/KÁROKBÓL
+ERED.
