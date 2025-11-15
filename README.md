@@ -57,11 +57,6 @@ Vagy szimplán futtasd a ZLockCore.exe-t vagy a ZLockCore_installer.exe-t
 - Visszafejtett fájlok: `plain/` mappában (csak feloldás után)
 - Metaadatok: `vault.meta.json`, `vault_status.json`
 
-## Biztonsági tanácsok
-- Recovery kulcsot mindig mentsd el biztonságos helyre!
-- A széf mappáját ne oszd meg, ne tárold nyilvános helyen!
-- A program nem tudja visszaállítani a jelszót recovery kulcs nélkül!
-
 ## Licenc
 Lásd: LICENSE.txt
 
@@ -73,3 +68,4 @@ Lásd: LICENSE.txt
 ---
 
 **Készítette: Gódor Zoárd a ZLockCore fejlesztője**
+
