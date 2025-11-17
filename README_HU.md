@@ -1,5 +1,7 @@
 # ZLockCore — Vault Manager
 
+## https://github.com/zpro11/ZLockCore
+
 ZLockCore egy grafikus, jelszóval és opcionális recovery kulccsal védett fájlszéf-kezelő alkalmazás Windowsra. A program lehetővé teszi titkosított széfek létrehozását, fájlok biztonságos tárolását, valamint a széfek feloldását, lezárását, importálását, átnevezését és törlését.
 
 ## Fő funkciók
