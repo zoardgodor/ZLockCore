@@ -34,16 +34,18 @@
             background: white;
             margin-top: 20px;
             border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
         pre {
-            background: #eee;
-            padding: 10px;
+            background: #fff;
+            padding: 12px;
             overflow-x: auto;
             border-radius: 6px;
+            border: 1px solid #e6e6e6;
+            white-space: pre-wrap;
+            word-break: break-word;
         }
-        code {
-            font-family: Consolas, monospace;
-        }
+        a { color: #0366d6; }
     </style>
 </head>
 <body>
@@ -53,101 +55,81 @@
     <div id="langSwitch">HU</div>
 </header>
 
-<div id="content"></div>
+<div id="content">
+    <p>Loading README files…</p>
+</div>
 
 <script>
-    const en = `
-<h1>ZLockCore — Vault Manager</h1>
-<p><a href="https://github.com/zpro11/ZLockCore">https://github.com/zpro11/ZLockCore</a></p>
+    // Utility: simple HTML-escape
+    function escapeHtml(s) {
+        return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
 
-<p>ZLockCore is a graphical file vault manager application for Windows, protected by a password and an optional recovery key. The program allows you to create encrypted vaults, securely store files, and unlock, lock, import, rename, and delete vaults.</p>
+    // Convert markdown [text](url) and plain URLs into clickable anchors while preserving the exact visible text
+    function makeClickableMarkdown(md) {
+        const anchors = [];
+        // store anchors as placeholders so we can escape the rest safely
+        md = md.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, function(_, text, url){
+            const display = '[' + text + '](' + url + ')';
+            const id = '__ANCHOR' + anchors.length + '__';
+            anchors.push('<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(display) + '</a>');
+            return id;
+        });
+        md = md.replace(/(https?:\/\/[^\s)]+)/g, function(_, url){
+            const id = '__ANCHOR' + anchors.length + '__';
+            anchors.push('<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(url) + '</a>');
+            return id;
+        });
+        // escape the rest
+        md = escapeHtml(md);
+        // reinsert anchors (their visible text has been escaped already)
+        anchors.forEach(function(a, i){
+            md = md.replace('__ANCHOR' + i + '__', a);
+        });
+        return md;
+    }
 
-<h2>Main Features</h2>
-<ul>
-<li>Manage multiple vaults, each in a separate folder</li>
-<li>Encrypt and decrypt files using the AES-GCM algorithm</li>
-<li>Password and recovery key protection</li>
-<li>Add and restore files, import/export vaults</li>
-<li>Password reset with recovery key</li>
-<li>Modern Hungarian GUI (Tkinter)</li>
-<li>PyInstaller .exe build</li>
-</ul>
-
-<h2>Creating the exe manually</h2>
-<pre><code>pip install pyinstaller
-pyinstaller --clean --onedir --noconsole --noupx --icon=icon.ico main.py
-</code></pre>
-
-<h2>Installation and Running</h2>
-<p>Download from the Releases page: ZLockCore_installer.exe or ZLockCore_executable.zip.</p>
-
-<h2>Running main.py</h2>
-<pre><code>pip install cryptography
-python main.py
-</code></pre>
-
-<h2>Usage</h2>
-<p>Same steps as your README…</p>
-
-<hr>
-<p><b>Created by Zoárd Gódor, developer of ZLockCore</b></p>
-`;
-
-    const hu = `
-<h1>ZLockCore — Vault Manager</h1>
-<p><a href="https://github.com/zpro11/ZLockCore">https://github.com/zpro11/ZLockCore</a></p>
-
-<p>ZLockCore egy grafikus, jelszóval és opcionális recovery kulccsal védett fájlszéf-kezelő Windowsra.</p>
-
-<h2>Fő funkciók</h2>
-<ul>
-<li>Több széf kezelése</li>
-<li>AES-GCM titkosítás</li>
-<li>Jelszó + recovery kulcs</li>
-<li>Fájlok hozzáadása, exportálása</li>
-<li>Jelszó visszaállítás recovery kulccsal</li>
-<li>Modern magyar GUI</li>
-<li>PyInstaller .exe</li>
-</ul>
-
-<h2>Exe készítése</h2>
-<pre><code>pip install pyinstaller
-pyinstaller --clean --onedir --noconsole --noupx --icon=icon.ico main.py
-</code></pre>
-
-<h2>Telepítés és futtatás</h2>
-<p>Töltsd le a Releases oldalról.</p>
-
-<h2>main.py futtatása</h2>
-<pre><code>pip install cryptography
-python main.py
-</code></pre>
-
-<h2>Használat</h2>
-<p>Ugyanazok a lépések, mint a README-ben…</p>
-
-<hr>
-<p><b>Készítette: Gódor Zoárd, a ZLockCore fejlesztője</b></p>
-`;
-
-    const content = document.getElementById("content");
-    const switcher = document.getElementById("langSwitch");
-
-    let current = "en";
-    content.innerHTML = en;
-
-    switcher.onclick = () => {
-        if (current === "en") {
-            current = "hu";
-            switcher.textContent = "EN";
-            content.innerHTML = hu;
-        } else {
-            current = "en";
-            switcher.textContent = "HU";
-            content.innerHTML = en;
+    async function fetchText(path) {
+        try {
+            const res = await fetch(path);
+            if (!res.ok) return 'ERROR: could not load ' + path + ' (status ' + res.status + ')';
+            return await res.text();
+        } catch (e) {
+            return 'ERROR: fetch failed for ' + path + ': ' + e;
         }
-    };
+    }
+
+    const contentEl = document.getElementById('content');
+    const switcher = document.getElementById('langSwitch');
+    let current = 'en';
+    let enText = '';
+    let huText = '';
+
+    async function load() {
+        contentEl.innerHTML = '<p>Loading README files…</p>';
+        [enText, huText] = await Promise.all([
+            fetchText('../README.md'),
+            fetchText('../README_HU.md')
+        ]);
+        render();
+    }
+
+    function render() {
+        const enHtml = '<h3>README.md (EN)</h3><pre>' + makeClickableMarkdown(enText) + '</pre>';
+        const huHtml = '<h3>README_HU.md (HU)</h3><pre>' + makeClickableMarkdown(huText) + '</pre>';
+        contentEl.innerHTML = (current === 'en') ? enHtml : huHtml;
+    }
+
+    switcher.addEventListener('click', function() {
+        current = (current === 'en') ? 'hu' : 'en';
+        switcher.textContent = (current === 'en') ? 'HU' : 'EN';
+        render();
+    });
+
+    // Start loading
+    load();
 </script>
 
 </body>
 </html>
+        // Linkek
