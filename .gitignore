@@ -1,3 +1,5 @@
 .venv/
 build/
 main.spec
+.gitignore
+__pycache__/
