@@ -1,6 +1,6 @@
 # ZLockCore — Vault Manager
 
-## https://github.com/zpro11/ZLockCore
+## https://github.com/zoardgodor/ZLockCore
 
 ZLockCore egy grafikus, jelszóval és opcionális recovery kulccsal védett fájlszéf-kezelő alkalmazás. A program lehetővé teszi titkosított széfek létrehozását, fájlok biztonságos tárolását, valamint a széfek feloldását, lezárását, importálását, átnevezését és törlését.
 
@@ -21,7 +21,7 @@ ZLockCore egy grafikus, jelszóval és opcionális recovery kulccsal védett fá
    ```
 ## Telepítés és futtatás
 
-Keresd meg a program legfrissebb verzióját ezen a webhelyen: https://github.com/zpro11/ZLockCore/releases Windows-hoz tölsd le a ZLockCore_installer_[verzió].exe-t az alap, rendszerszintű telepítéshez, vagy a ZLockCore_[verzió].zip fájlt. (Linuxra a ZLockCore_[verzió]_LINUX.zip fájlt.) Az installer esetében kövesd a képernyőn megjelenő utasításokat. ZIP esetén bonsd ki egy mappába a tartalmát, és futtasd a futtatható binárist. (Linuxon előbb adj engedéjezd hogy ez programként futhasson. terminálba írd be: chmod +X [A futtatható bináris neve])
+Keresd meg a program legfrissebb verzióját ezen a webhelyen: https://github.com/zoardgodor/ZLockCore/releases Windows-hoz tölsd le a ZLockCore_installer_[verzió].exe-t az alap, rendszerszintű telepítéshez, vagy a ZLockCore_[verzió].zip fájlt. (Linuxra a ZLockCore_[verzió]_LINUX.zip fájlt.) Az installer esetében kövesd a képernyőn megjelenő utasításokat. ZIP esetén bonsd ki egy mappába a tartalmát, és futtasd a futtatható binárist. (Linuxon előbb adj engedéjezd hogy ez programként futhasson. terminálba írd be: chmod +X [A futtatható bináris neve])
 
 (Az Installer az Inno Setup Compiler nevű szoftverrel készült)
 
@@ -63,7 +63,7 @@ Keresd meg a program legfrissebb verzióját ezen a webhelyen: https://github.co
 - Metaadatok: `vault.meta.json`, `vault_status.json`
 
 ## Licenc GPL v3.0
-Lásd: https://github.com/zpro11/ZLockCore/blob/main/LICENSE.txt
+Lásd: https://github.com/zoardgodor/ZLockCore/blob/main/LICENSE.txt
 A PROGRAM TELEPÍTÉSÉVEL ÉS HASZNÁLATÁVAL ELFOGADOD A LICENC SZERZŐDÉST.
 
 ## Fejlesztői információk
