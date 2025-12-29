@@ -1,6 +1,6 @@
 # ZLockCore — Vault Manager
 
-## https://github.com/zpro11/ZLockCore
+## https://github.com/zoardgodor/ZLockCore
 
 ZLockCore is a graphical file vault manager application,, protected by a password and an optional recovery key. The program allows you to create encrypted vaults, securely store files, and unlock, lock, import, rename, and delete vaults.
 
@@ -21,7 +21,7 @@ ZLockCore is a graphical file vault manager application,, protected by a passwor
    ```
 ## Installation and Running
 
-Find the latest version of the program at: https://github.com/zpro11/ZLockCore/releases For Windows, download the ZLockCore_installer_[version].exe for a standard system-wide installation, or the ZLockCore_[version].zip file. (For Linux, use the ZLockCore_[version]_LINUX.zip file.) For the installer, follow the on-screen instructions. For the ZIP, extract its contents to a folder and run the executable binary. (On Linux, first allow it to run as a program. Type the following into the terminal: chmod +X [The name of the executable binary])
+Find the latest version of the program at: https://github.com/zoardgodor/ZLockCore/releases For Windows, download the ZLockCore_installer_[version].exe for a standard system-wide installation, or the ZLockCore_[version].zip file. (For Linux, use the ZLockCore_[version]_LINUX.zip file.) For the installer, follow the on-screen instructions. For the ZIP, extract its contents to a folder and run the executable binary. (On Linux, first allow it to run as a program. Type the following into the terminal: chmod +X [The name of the executable binary])
 
 (The installer was created using software called Inno Setup Compiler.)
 
@@ -63,7 +63,7 @@ Find the latest version of the program at: https://github.com/zpro11/ZLockCore/r
 - Metadata: `vault.meta.json`, `vault_status.json`
 
 ## License GPL v3.0
-See: https://github.com/zpro11/ZLockCore/blob/main/LICENSE.txt
+See: https://github.com/zoardgodor/ZLockCore/blob/main/LICENSE.txt
 BY INSTALLING AND USING THE PROGRAM, YOU ACCEPT THE LICENSE AGREEMENT.
 
 ## Developer Information

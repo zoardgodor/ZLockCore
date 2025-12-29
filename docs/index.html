@@ -56,80 +56,224 @@
 </header>
 
 <div id="content">
-    <p>Loading README files…</p>
-</div>
+     <div id="rendered"></div>
+
+     <pre id="en_raw" style="display:none">
+ZLockCore — Vault Manager
+
+GitHub: https://github.com/zoardgodor/ZLockCore
+
+ZLockCore is a graphical file vault manager application,, protected by a password and an optional recovery key. The program allows you to create encrypted vaults, securely store files, and unlock, lock, import, rename, and delete vaults.
+
+Main Features
+- Manage multiple vaults, each in a separate folder
+- Encrypt and decrypt files using the AES-GCM algorithm
+- Password and recovery key (word list) protection
+- Password reset with recovery key
+- Executable file created with PyInstaller
+
+Creating the exe manually
+
+    pip install pyinstaller
+
+    pyinstaller --clean --onedir --noconsole --noupx --icon=icon.ico main.py
+
+Installation and Running
+
+Find the latest version of the program at: https://github.com/zoardgodor/ZLockCore/releases For Windows, download the ZLockCore_installer_[version].exe for a standard system-wide installation, or the ZLockCore_[version].zip file. (For Linux, use the ZLockCore_[version]_LINUX.zip file.) For the installer, follow the on-screen instructions. For the ZIP, extract its contents to a folder and run the executable binary. (On Linux, first allow it to run as a program. Type the following into the terminal: chmod +X [The name of the executable binary])
+
+(The installer was created using software called Inno Setup Compiler.)
+
+Running main.py:
+
+1. **Python 3.8+ required**
+2. Install the required packages:
+
+    pip install cryptography
+
+3. Run the program:
+
+    python main.py
+
+
+Usage
+1. Create a new vault
+    - Click the "New Vault" button
+    - Enter a name, choose a folder, set a password
+    - (Recommended) Generate a recovery key: write it down or save it in a secure place!
+2. Unlock a vault
+    - Select the vault, then click the "Unlock" button and enter the password
+3. Add files
+    - Click on the "Show Vault" button. You can drag files and folders here.
+4. Lock the vault
+    - Click the "Lock" button. The files will be encrypted again
+    - (If the safe contained a folder, the folder will be broken up, meaning that everything contained in the folder will be removed from it and the folder will be deleted. However, the files will not be lost.)
+5. Open the vault
+    - With the vault unlocked, click the "Show Vault" button
+6. Reset password
+    - "Reset Password" button: after entering the recovery key, a new password can be set
+7. Import/rename/delete vault
+    - In the list on the left, select the vault and then the appropriate button
+
+File Structure
+- Each vault is located in a separate folder
+- Encrypted files: in the `storage/` folder, with `.cbox` extension
+- Decrypted files: in the `plain/` folder (only after unlocking)
+- Metadata: `vault.meta.json`, `vault_status.json`
+
+License GPL v3.0
+See: https://github.com/zoardgodor/ZLockCore/blob/main/LICENSE.txt
+BY INSTALLING AND USING THE PROGRAM, YOU ACCEPT THE LICENSE AGREEMENT.
+
+Developer Information
+- Main file: `main.py`
+- Encryption: Scrypt KDF + AES-GCM
+- GUI: Tkinter
+
+Multilingual Support (Language Selection)
+
+The program supports multiple languages. By default, you can choose between English and Hungarian.
+
+You can select the language under the "Language" menu in the top right corner. The selected language will be saved and remembered after restarting the program.
+
+Adding Your Own or More Languages
+
+If you want to add/use more languages, download the `more_languages.json` file and place this extension in the folder where `main.py` or `ZLockCore.exe` is located. (On Linux, place it in the folder containing the executable binary.) (The ZLockCore_installer automatically installs the more_languages.json file into the program folder.)
+
+If this file is present, the program will automatically offer the languages listed in it in the menu. If not, only the default English and Hungarian will be available.
+
+---
+
+**Created by Zoárd Gódor, developer of ZLockCore**
+````
+</pre>
+
+     <pre id="hu_raw" style="display:none">
+ZLockCore — Vault Manager
+
+GitHub: https://github.com/zoardgodor/ZLockCore
+
+ZLockCore egy grafikus, jelszóval és opcionális recovery kulccsal védett fájlszéf-kezelő alkalmazás. A program lehetővé teszi titkosított széfek létrehozását, fájlok biztonságos tárolását, valamint a széfek feloldását, lezárását, importálását, átnevezését és törlését.
+
+Fő funkciók
+- Több széf kezelése, mindegyik külön mappában
+- Fájlok titkosítása és visszafejtése AES-GCM algoritmussal
+- Jelszavas és recovery kulcsos (szólistás) védelem
+- Jelszó visszaállítása recovery kulccsal
+- Pyinstaller-el készített futtatható fájl.
+
+Az exe manuális elkészítése
+
+    pip install pyinstaller
+
+
+    pyinstaller --clean --onedir --noconsole --noupx --icon=icon.ico main.py
+
+Telepítés és futtatás
+
+Keresd meg a program legfrissebb verzióját ezen a webhelyen: https://github.com/zoardgodor/ZLockCore/releases Windows-hoz tölsd le a ZLockCore_installer_[verzió].exe-t az alap, rendszerszintű telepítéshez, vagy a ZLockCore_[verzió].zip fájlt. (Linuxra a ZLockCore_[verzió]_LINUX.zip fájlt.) Az installer esetében kövesd a képernyőn megjelenő utasításokat. ZIP esetén bonsd ki egy mappába a tartalmát, és futtasd a futtatható binárist. (Linuxon előbb adj engedéjezd hogy ez programként futhasson. terminálba írd be: chmod +X [A futtatható bináris neve])
+
+(Az Installer az Inno Setup Compiler nevű szoftverrel készült)
+
+main.py futtatása:
+
+1. **Python 3.8+ szükséges**
+2. Telepítsd a szükséges csomagokat:
+
+    pip install cryptography
+
+3. Futtasd a programot:
+
+    python main.py
+
+## Használat
+1. Új széf létrehozása
+    - Kattints az "Új széf" gombra
+    - Adj nevet, válassz mappát, állíts be jelszót
+    - (Ajánlott) Recovery kulcs generálása: ezt írd le vagy mentsd el biztonságos helyre!
+2. Széf feloldása
+    - Válaszd ki a széfet, majd kattints a "Feloldás" gombra, add meg a jelszót
+3. Fájlok hozzáadása
+    - Kattints a "Széf megjelenítése" gombra. Ide lehet behúzni fájlokat és mappákat.
+4. Széf lezárása
+    - Kattints a "Lezárás" gombra. A fájlok ismét titkosításra kerülnek
+    - (Ha a széf mappát tartalmazott, a mappa felbomlik, vagyis minden amit a mappa tartalmazott, kijön belőle, és a mappa törlődik. de a fájlok nem vesznek el.)
+5. Széf megnyitása
+    - Feloldott széf esetén kattints a "Széf megjelenítése" gombra
+6. Jelszó visszaállítása
+    - "Jelszó visszaállítása" gomb, recovery kulcs megadása után új jelszó állítható be
+7. Széf importálása/átnevezése/törlése
+    - A bal oldali listában válaszd ki a széfet, majd a megfelelő gombot
+
+Fájlstruktúra
+- Minden széf egy külön mappában található
+- Titkosított fájlok: `storage/` mappában, `.cbox` kiterjesztéssel
+- Visszafejtett fájlok: `plain/` mappában (csak feloldás után)
+- Metaadatok: `vault.meta.json`, `vault_status.json`
+
+Licenc GPL v3.0
+Lásd: https://github.com/zoardgodor/ZLockCore/blob/main/LICENSE.txt
+A PROGRAM TELEPÍTÉSÉVEL ÉS HASZNÁLATÁVAL ELFOGADOD A LICENC SZERZŐDÉST.
+
+Fejlesztői információk
+- Fő fájl: `main.py`
+- Titkosítás: Scrypt KDF + AES-GCM
+- GUI: Tkinter
+
+Többnyelvűség (nyelvválasztás)
+
+A program több nyelvet is támogat. Alapértelmezés szerint angol és magyar nyelv közül lehet választani.
+
+Nyelvet a jobb felső sarokban található "Language" menü alatt lehet választani. A kiválasztott nyelv elmentésre kerül, és a program újraindítás után is megjegyzi.
+
+Saját vagy további nyelvek hozzáadása
+
+Ha szeretnél további nyelveket hozzáadni/használni, tölsd le a `more_languages.json` nevű fájlt, és ezt a bővítményt rakd abba a mappába, ahol a `main.py` vagy a `ZLockCore.exe` található. (Linux on abba a mappába kell rakni amelyikben a futtatható bináris van) (A ZLockCore_installer automatikusan telepíti a more_laungages.json fájlt a program mappájába.)
+
+Ha ez a fájl jelen van, a program automatikusan felkínálja a benne szereplő nyelveket is a menüben. Ha nincs, akkor csak az alapértelmezett angol és magyar közül lehet választani.
+
+---
+
+**Készítette: Gódor Zoárd a ZLockCore fejlesztője**
+````
+</pre>
 
 <script>
-    // Utility: simple HTML-escape
-    function escapeHtml(s) {
-        return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    }
+     function escapeHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-    // Convert markdown [text](url) and plain URLs into clickable anchors while preserving the exact visible text
-    function makeClickableMarkdown(md) {
-        const anchors = [];
-        // store anchors as placeholders so we can escape the rest safely
-        md = md.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, function(_, text, url){
-            const display = '[' + text + '](' + url + ')';
-            const id = '__ANCHOR' + anchors.length + '__';
-            anchors.push('<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(display) + '</a>');
-            return id;
-        });
-        md = md.replace(/(https?:\/\/[^\s)]+)/g, function(_, url){
-            const id = '__ANCHOR' + anchors.length + '__';
-            anchors.push('<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(url) + '</a>');
-            return id;
-        });
-        // escape the rest
-        md = escapeHtml(md);
-        // reinsert anchors (their visible text has been escaped already)
-        anchors.forEach(function(a, i){
-            md = md.replace('__ANCHOR' + i + '__', a);
-        });
-        return md;
-    }
+     function makeClickableMarkdown(md) {
+          const anchors = [];
+          md = md.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, function(_, text, url){
+                const display = '[' + text + '](' + url + ')';
+                const id = '__ANCHOR' + anchors.length + '__';
+                anchors.push('<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(display) + '</a>');
+                return id;
+          });
+          md = md.replace(/(https?:\/\/[^\s)]+)/g, function(_, url){
+                const id = '__ANCHOR' + anchors.length + '__';
+                anchors.push('<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(url) + '</a>');
+                return id;
+          });
+          md = escapeHtml(md);
+          anchors.forEach(function(a,i){ md = md.replace('__ANCHOR' + i + '__', a); });
+          return md;
+     }
 
-    async function fetchText(path) {
-        try {
-            const res = await fetch(path);
-            if (!res.ok) return 'ERROR: could not load ' + path + ' (status ' + res.status + ')';
-            return await res.text();
-        } catch (e) {
-            return 'ERROR: fetch failed for ' + path + ': ' + e;
-        }
-    }
+     const enRaw = document.getElementById('en_raw').textContent;
+     const huRaw = document.getElementById('hu_raw').textContent;
+     const rendered = document.getElementById('rendered');
 
-    const contentEl = document.getElementById('content');
-    const switcher = document.getElementById('langSwitch');
-    let current = 'en';
-    let enText = '';
-    let huText = '';
+     function render(lang) {
+          if (lang === 'en') rendered.innerHTML = '<h3></h3><pre>' + makeClickableMarkdown(enRaw) + '</pre>';
+          else rendered.innerHTML = '<h3></h3><pre>' + makeClickableMarkdown(huRaw) + '</pre>';
+     }
 
-    async function load() {
-        contentEl.innerHTML = '<p>Loading README files…</p>';
-        [enText, huText] = await Promise.all([
-            fetchText('../README.md'),
-            fetchText('../README_HU.md')
-        ]);
-        render();
-    }
+     const switcher = document.getElementById('langSwitch');
+     let current = 'en';
+     switcher.addEventListener('click', function(){ current = (current === 'en') ? 'hu' : 'en'; switcher.textContent = (current === 'en') ? 'HU' : 'EN'; render(current); });
 
-    function render() {
-        const enHtml = '<h3>README.md (EN)</h3><pre>' + makeClickableMarkdown(enText) + '</pre>';
-        const huHtml = '<h3>README_HU.md (HU)</h3><pre>' + makeClickableMarkdown(huText) + '</pre>';
-        contentEl.innerHTML = (current === 'en') ? enHtml : huHtml;
-    }
-
-    switcher.addEventListener('click', function() {
-        current = (current === 'en') ? 'hu' : 'en';
-        switcher.textContent = (current === 'en') ? 'HU' : 'EN';
-        render();
-    });
-
-    // Start loading
-    load();
+     render('en');
 </script>
 
 </body>
 </html>
-        // Linkek
