@@ -79,7 +79,7 @@ You can select the language under the "Language" menu in the top right corner. T
 
 ### Adding Your Own or More Languages
 
-If you want to add/use more languages, download the `more_languages.json` file and place this extension in the folder where `main.py` or `ZLockCore.exe` is located. (On Linux, place it in the folder containing the executable binary.) (The ZLockCore_installer automatically installs the more_languages.json file into the program folder.)
+If you want to add/use more languages, download the `more_languages.json` file and place this extension in the folder where `main.py` or `ZLockCore.exe` is located. (On Linux, place it in the folder containing the executable binary.)
 
 If this file is present, the program will automatically offer the languages listed in it in the menu. If not, only the default English and Hungarian will be available.
 

@@ -79,7 +79,7 @@ Nyelvet a jobb felső sarokban található "Language" menü alatt lehet választ
 
 ### Saját vagy további nyelvek hozzáadása
 
-Ha szeretnél további nyelveket hozzáadni/használni, tölsd le a `more_languages.json` nevű fájlt, és ezt a bővítményt rakd abba a mappába, ahol a `main.py` vagy a `ZLockCore.exe` található. (Linux on abba a mappába kell rakni amelyikben a futtatható bináris van) (A ZLockCore_installer automatikusan telepíti a more_laungages.json fájlt a program mappájába.)
+Ha szeretnél további nyelveket hozzáadni/használni, tölsd le a `more_languages.json` nevű fájlt, és ezt a bővítményt rakd abba a mappába, ahol a `main.py` vagy a `ZLockCore.exe` található. (Linux on abba a mappába kell rakni amelyikben a futtatható bináris van)
 
 Ha ez a fájl jelen van, a program automatikusan felkínálja a benne szereplő nyelveket is a menüben. Ha nincs, akkor csak az alapértelmezett angol és magyar közül lehet választani.
 
