@@ -3,3 +3,4 @@ build/
 main.spec
 .gitignore
 __pycache__/
+installer.iss

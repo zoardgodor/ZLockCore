@@ -4,7 +4,7 @@
 #define MyAppName "ZLockCore"
 #define MyAppVersion "1.3"
 #define MyAppPublisher "Zoárd Gódor"
-#define MyAppURL "https://zoardgodor.github.io/ZLockCore/"
+#define MyAppURL "https://zoardgodor.github.io/ZVidDown/"
 #define MyAppExeName "ZLockCore_v1.3.exe"
 #define MyAppAssocName MyAppName + " File"
 #define MyAppAssocExt ".myp"
@@ -13,7 +13,7 @@
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{48F4B9F3-F683-4B9D-B008-2073F54657DE}
+AppId={{A2078283-1775-4BD9-B72E-5143F4874703}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
@@ -33,7 +33,7 @@ ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
 ChangesAssociations=yes
 DisableProgramGroupPage=yes
-LicenseFile=C:\Users\zz\Documents\GitHub\ZLockCore\LICENSE.txt
+LicenseFile=C:\Users\zz\Documents\GitHub\ZLockCore\dist\ZLockCore_v1.3\LICENSE.txt
 InfoBeforeFile=C:\Users\zz\Documents\GitHub\ZLockCore\info_before_install.txt
 InfoAfterFile=C:\Users\zz\Documents\GitHub\ZLockCore\info_after_install.txt
 ; Uncomment the following line to run in non administrative install mode (install for current user only).
@@ -53,7 +53,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "C:\Users\zz\Documents\GitHub\ZLockCore\dist\ZLockCore_v1.3\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\zz\Documents\GitHub\ZLockCore\dist\ZLockCore_v1.3\_internal\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\zz\Documents\GitHub\ZLockCore\dist\ZLockCore_v1.3\izé\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
