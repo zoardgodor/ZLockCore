@@ -1,278 +1,247 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
     <meta charset="UTF-8">
+    <title>ZLockCore – Vault Manager</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZLockCore — Vault Manager</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            background: #f5f5f5;
-            color: #222;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0f172a;
+            color: #e5e7eb;
+            line-height: 1.6;
         }
+
         header {
-            background: #1a1a1a;
-            color: white;
-            padding: 15px 20px;
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        nav {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            justify-content: flex-end;
+            padding: 10px 20px;
+            background: #020617;
         }
-        #langSwitch {
+
+        nav button {
+            background: none;
+            border: 1px solid #2563eb;
+            color: #e5e7eb;
+            padding: 6px 12px;
+            margin-left: 10px;
             cursor: pointer;
-            background: #333;
-            padding: 8px 14px;
-            border-radius: 6px;
-            user-select: none;
+            border-radius: 4px;
         }
-        #content {
-            max-width: 900px;
+
+        nav button:hover {
+            background: #2563eb;
+        }
+
+        main {
+            max-width: 1000px;
             margin: auto;
-            padding: 20px;
-            background: white;
-            margin-top: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 40px 20px;
         }
-        pre {
-            background: #fff;
-            padding: 12px;
-            overflow-x: auto;
+
+        section {
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            color: #93c5fd;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        .buttons a {
+            display: inline-block;
+            margin-right: 15px;
+            margin-top: 10px;
+            padding: 12px 20px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
             border-radius: 6px;
-            border: 1px solid #e6e6e6;
-            white-space: pre-wrap;
-            word-break: break-word;
+            font-weight: bold;
         }
-        a { color: #0366d6; }
+
+        .buttons a:hover {
+            background: #1d4ed8;
+        }
+
+        footer {
+            background: #020617;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #9ca3af;
+        }
+
+        .lang {
+            display: none;
+        }
+
+        .lang.active {
+            display: block;
+        }
+
+        code {
+            background: #020617;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: Consolas, monospace;
+        }
     </style>
 </head>
 <body>
 
+<nav>
+    <button onclick="setLang('hu')">Magyar</button>
+    <button onclick="setLang('en')">English</button>
+</nav>
+
 <header>
-    <h2>ZLockCore — Vault Manager</h2>
-    <div id="langSwitch">HU</div>
+    <h1>ZLockCore</h1>
+    <p>Secure Vault Manager – titkosított fájlszéf egyszerűen</p>
 </header>
 
-<div id="content">
-     <div id="rendered"></div>
+<main>
 
-     <pre id="en_raw" style="display:none">
-ZLockCore — Vault Manager
+    <div id="hu" class="lang active">
 
-GitHub: https://github.com/zoardgodor/ZLockCore
+        <section>
+            <h2>Mi az a ZLockCore?</h2>
+            <p>
+                A <strong>ZLockCore</strong> egy grafikus felületű fájlszéf-kezelő alkalmazás,
+                amely lehetővé teszi fájlok biztonságos, erős titkosítással történő tárolását.
+                A széfek jelszóval és opcionális recovery kulccsal védettek.
+            </p>
+        </section>
 
-ZLockCore is a graphical file vault manager application,, protected by a password and an optional recovery key. The program allows you to create encrypted vaults, securely store files, and unlock, lock, import, rename, and delete vaults.
+        <section>
+            <h2>Fő funkciók</h2>
+            <ul>
+                <li>Több széf kezelése külön mappákban</li>
+                <li>Fájlok titkosítása és visszafejtése (AES-GCM)</li>
+                <li>Jelszavas védelem</li>
+                <li>Recovery kulcs (szólista) támogatás</li>
+                <li>Jelszó visszaállítása recovery kulccsal</li>
+                <li>Széfek importálása, átnevezése, törlése</li>
+                <li>Drag & drop fájlkezelés</li>
+            </ul>
+        </section>
 
-Main Features
-- Manage multiple vaults, each in a separate folder
-- Encrypt and decrypt files using the AES-GCM algorithm
-- Password and recovery key (word list) protection
-- Password reset with recovery key
-- Executable file created with PyInstaller
+        <section>
+            <h2>Technológiák</h2>
+            <ul>
+                <li>Python 3</li>
+                <li>Tkinter (GUI)</li>
+                <li>Scrypt KDF</li>
+                <li>AES-GCM titkosítás</li>
+                <li>PyInstaller</li>
+            </ul>
+        </section>
 
-Creating the exe manually
+        <section>
+            <h2>Letöltés és dokumentáció</h2>
+            <div class="buttons">
+                <a href="https://github.com/zoardgodor/ZLockCore/releases" target="_blank">Letöltés (Releases)</a>
+                <a href="https://github.com/zoardgodor/ZLockCore" target="_blank">GitHub / README</a>
+            </div>
+        </section>
 
-    pip install pyinstaller
+        <section>
+            <h2>Többnyelvűség</h2>
+            <p>
+                A program alapértelmezetten magyar és angol nyelvet támogat.
+                További nyelvek a <code>more_languages.json</code> fájl segítségével adhatók hozzá.
+            </p>
+        </section>
 
-    pyinstaller --clean --onedir --noconsole --noupx --icon=icon.ico main.py
+    </div>
 
-Installation and Running
+    <div id="en" class="lang">
 
-Find the latest version of the program at: https://github.com/zoardgodor/ZLockCore/releases For Windows, download the ZLockCore_installer_[version].exe for a standard system-wide installation, or the ZLockCore_[version].zip file. (For Linux, use the ZLockCore_[version]_LINUX.zip file.) For the installer, follow the on-screen instructions. For the ZIP, extract its contents to a folder and run the executable binary. (On Linux, first allow it to run as a program. Type the following into the terminal: chmod +X [The name of the executable binary])
+        <section>
+            <h2>What is ZLockCore?</h2>
+            <p>
+                <strong>ZLockCore</strong> is a graphical file vault manager
+                designed to securely store your files using strong encryption.
+                Vaults are protected by a password and an optional recovery key.
+            </p>
+        </section>
 
-(The installer was created using software called Inno Setup Compiler.)
+        <section>
+            <h2>Main Features</h2>
+            <ul>
+                <li>Manage multiple vaults in separate folders</li>
+                <li>File encryption and decryption (AES-GCM)</li>
+                <li>Password protection</li>
+                <li>Recovery key (word list) support</li>
+                <li>Password reset via recovery key</li>
+                <li>Import, rename, and delete vaults</li>
+                <li>Drag & drop file handling</li>
+            </ul>
+        </section>
 
-Running main.py:
+        <section>
+            <h2>Technologies</h2>
+            <ul>
+                <li>Python 3</li>
+                <li>Tkinter (GUI)</li>
+                <li>Scrypt KDF</li>
+                <li>AES-GCM encryption</li>
+                <li>PyInstaller</li>
+            </ul>
+        </section>
 
-1. **Python 3.8+ required**
-2. Install the required packages:
+        <section>
+            <h2>Download & Documentation</h2>
+            <div class="buttons">
+                <a href="https://github.com/zoardgodor/ZLockCore/releases" target="_blank">Download (Releases)</a>
+                <a href="https://github.com/zoardgodor/ZLockCore" target="_blank">GitHub / README</a>
+            </div>
+        </section>
 
-    pip install cryptography
+        <section>
+            <h2>Multilingual Support</h2>
+            <p>
+                The program supports English and Hungarian by default.
+                Additional languages can be added using the <code>more_languages.json</code> file.
+            </p>
+        </section>
 
-3. Run the program:
+    </div>
 
-    python main.py
+</main>
 
-
-Usage
-1. Create a new vault
-    - Click the "New Vault" button
-    - Enter a name, choose a folder, set a password
-    - (Recommended) Generate a recovery key: write it down or save it in a secure place!
-2. Unlock a vault
-    - Select the vault, then click the "Unlock" button and enter the password
-3. Add files
-    - Click on the "Show Vault" button. You can drag files and folders here.
-4. Lock the vault
-    - Click the "Lock" button. The files will be encrypted again
-    - (If the safe contained a folder, the folder will be broken up, meaning that everything contained in the folder will be removed from it and the folder will be deleted. However, the files will not be lost.)
-5. Open the vault
-    - With the vault unlocked, click the "Show Vault" button
-6. Reset password
-    - "Reset Password" button: after entering the recovery key, a new password can be set
-7. Import/rename/delete vault
-    - In the list on the left, select the vault and then the appropriate button
-
-File Structure
-- Each vault is located in a separate folder
-- Encrypted files: in the `storage/` folder, with `.cbox` extension
-- Decrypted files: in the `plain/` folder (only after unlocking)
-- Metadata: `vault.meta.json`, `vault_status.json`
-
-License GPL v3.0
-See: https://github.com/zoardgodor/ZLockCore/blob/main/LICENSE.txt
-BY INSTALLING AND USING THE PROGRAM, YOU ACCEPT THE LICENSE AGREEMENT.
-
-Developer Information
-- Main file: `main.py`
-- Encryption: Scrypt KDF + AES-GCM
-- GUI: Tkinter
-
-Multilingual Support (Language Selection)
-
-The program supports multiple languages. By default, you can choose between English and Hungarian.
-
-You can select the language under the "Language" menu in the top right corner. The selected language will be saved and remembered after restarting the program.
-
-Adding Your Own or More Languages
-
-If you want to add/use more languages, download the `more_languages.json` file and place this extension in the folder where `main.py` or `ZLockCore.exe` is located. (On Linux, place it in the folder containing the executable binary.)
-
-If this file is present, the program will automatically offer the languages listed in it in the menu. If not, only the default English and Hungarian will be available.
-
----
-
-**Created by Zoárd Gódor, developer of ZLockCore**
-````
-</pre>
-
-     <pre id="hu_raw" style="display:none">
-ZLockCore — Vault Manager
-
-GitHub: https://github.com/zoardgodor/ZLockCore
-
-ZLockCore egy grafikus, jelszóval és opcionális recovery kulccsal védett fájlszéf-kezelő alkalmazás. A program lehetővé teszi titkosított széfek létrehozását, fájlok biztonságos tárolását, valamint a széfek feloldását, lezárását, importálását, átnevezését és törlését.
-
-Fő funkciók
-- Több széf kezelése, mindegyik külön mappában
-- Fájlok titkosítása és visszafejtése AES-GCM algoritmussal
-- Jelszavas és recovery kulcsos (szólistás) védelem
-- Jelszó visszaállítása recovery kulccsal
-- Pyinstaller-el készített futtatható fájl.
-
-Az exe manuális elkészítése
-
-    pip install pyinstaller
-
-
-    pyinstaller --clean --onedir --noconsole --noupx --icon=icon.ico main.py
-
-Telepítés és futtatás
-
-Keresd meg a program legfrissebb verzióját ezen a webhelyen: https://github.com/zoardgodor/ZLockCore/releases Windows-hoz tölsd le a ZLockCore_installer_[verzió].exe-t az alap, rendszerszintű telepítéshez, vagy a ZLockCore_[verzió].zip fájlt. (Linuxra a ZLockCore_[verzió]_LINUX.zip fájlt.) Az installer esetében kövesd a képernyőn megjelenő utasításokat. ZIP esetén bonsd ki egy mappába a tartalmát, és futtasd a futtatható binárist. (Linuxon előbb adj engedéjezd hogy ez programként futhasson. terminálba írd be: chmod +X [A futtatható bináris neve])
-
-(Az Installer az Inno Setup Compiler nevű szoftverrel készült)
-
-main.py futtatása:
-
-1. **Python 3.8+ szükséges**
-2. Telepítsd a szükséges csomagokat:
-
-    pip install cryptography
-
-3. Futtasd a programot:
-
-    python main.py
-
-## Használat
-1. Új széf létrehozása
-    - Kattints az "Új széf" gombra
-    - Adj nevet, válassz mappát, állíts be jelszót
-    - (Ajánlott) Recovery kulcs generálása: ezt írd le vagy mentsd el biztonságos helyre!
-2. Széf feloldása
-    - Válaszd ki a széfet, majd kattints a "Feloldás" gombra, add meg a jelszót
-3. Fájlok hozzáadása
-    - Kattints a "Széf megjelenítése" gombra. Ide lehet behúzni fájlokat és mappákat.
-4. Széf lezárása
-    - Kattints a "Lezárás" gombra. A fájlok ismét titkosításra kerülnek
-    - (Ha a széf mappát tartalmazott, a mappa felbomlik, vagyis minden amit a mappa tartalmazott, kijön belőle, és a mappa törlődik. de a fájlok nem vesznek el.)
-5. Széf megnyitása
-    - Feloldott széf esetén kattints a "Széf megjelenítése" gombra
-6. Jelszó visszaállítása
-    - "Jelszó visszaállítása" gomb, recovery kulcs megadása után új jelszó állítható be
-7. Széf importálása/átnevezése/törlése
-    - A bal oldali listában válaszd ki a széfet, majd a megfelelő gombot
-
-Fájlstruktúra
-- Minden széf egy külön mappában található
-- Titkosított fájlok: `storage/` mappában, `.cbox` kiterjesztéssel
-- Visszafejtett fájlok: `plain/` mappában (csak feloldás után)
-- Metaadatok: `vault.meta.json`, `vault_status.json`
-
-Licenc GPL v3.0
-Lásd: https://github.com/zoardgodor/ZLockCore/blob/main/LICENSE.txt
-A PROGRAM TELEPÍTÉSÉVEL ÉS HASZNÁLATÁVAL ELFOGADOD A LICENC SZERZŐDÉST.
-
-Fejlesztői információk
-- Fő fájl: `main.py`
-- Titkosítás: Scrypt KDF + AES-GCM
-- GUI: Tkinter
-
-Többnyelvűség (nyelvválasztás)
-
-A program több nyelvet is támogat. Alapértelmezés szerint angol és magyar nyelv közül lehet választani.
-
-Nyelvet a jobb felső sarokban található "Language" menü alatt lehet választani. A kiválasztott nyelv elmentésre kerül, és a program újraindítás után is megjegyzi.
-
-Saját vagy további nyelvek hozzáadása
-
-Ha szeretnél további nyelveket hozzáadni/használni, tölsd le a `more_languages.json` nevű fájlt, és ezt a bővítményt rakd abba a mappába, ahol a `main.py` vagy a `ZLockCore.exe` található. (Linux on abba a mappába kell rakni amelyikben a futtatható bináris van)
-
-Ha ez a fájl jelen van, a program automatikusan felkínálja a benne szereplő nyelveket is a menüben. Ha nincs, akkor csak az alapértelmezett angol és magyar közül lehet választani.
-
----
-
-**Készítette: Gódor Zoárd a ZLockCore fejlesztője**
-````
-</pre>
+<footer>
+    © ZLockCore – Created by Gódor Zoárd
+</footer>
 
 <script>
-     function escapeHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-
-     function makeClickableMarkdown(md) {
-          const anchors = [];
-          md = md.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, function(_, text, url){
-                const display = '[' + text + '](' + url + ')';
-                const id = '__ANCHOR' + anchors.length + '__';
-                anchors.push('<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(display) + '</a>');
-                return id;
-          });
-          md = md.replace(/(https?:\/\/[^\s)]+)/g, function(_, url){
-                const id = '__ANCHOR' + anchors.length + '__';
-                anchors.push('<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(url) + '</a>');
-                return id;
-          });
-          md = escapeHtml(md);
-          anchors.forEach(function(a,i){ md = md.replace('__ANCHOR' + i + '__', a); });
-          return md;
-     }
-
-     const enRaw = document.getElementById('en_raw').textContent;
-     const huRaw = document.getElementById('hu_raw').textContent;
-     const rendered = document.getElementById('rendered');
-
-     function render(lang) {
-          if (lang === 'en') rendered.innerHTML = '<h3></h3><pre>' + makeClickableMarkdown(enRaw) + '</pre>';
-          else rendered.innerHTML = '<h3></h3><pre>' + makeClickableMarkdown(huRaw) + '</pre>';
-     }
-
-     const switcher = document.getElementById('langSwitch');
-     let current = 'en';
-     switcher.addEventListener('click', function(){ current = (current === 'en') ? 'hu' : 'en'; switcher.textContent = (current === 'en') ? 'HU' : 'EN'; render(current); });
-
-     render('en');
+    function setLang(lang) {
+        document.querySelectorAll('.lang').forEach(el => el.classList.remove('active'));
+        document.getElementById(lang).classList.add('active');
+        document.documentElement.lang = lang;
+    }
 </script>
 
 </body>
