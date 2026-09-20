@@ -1,1 +1,2 @@
-pyinstaller --clean --onedir --noconsole --noupx --icon=icon.ico main.py
+python -m pip install -r requirements.txt
+python -m PyInstaller --clean --noconfirm --onedir --noconsole --noupx --icon=icon.ico main.py

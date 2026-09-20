@@ -1,90 +1,51 @@
-# ZLockCore — Vault Manager
+# ZLockCore
 
-## https://github.com/zoardgodor/ZLockCore
+ZLockCore is a cross-platform encrypted vault manager with a PySide6 interface. Each new vault is one `.zlock` container. The encrypted container keeps file names, nested folders and file contents together, so the visible workspace has the same structure as the original files.
 
-ZLockCore is a graphical file vault manager application,, protected by a password and an optional recovery key. The program allows you to create encrypted vaults, securely store files, and unlock, lock, import, rename, and delete vaults.
+## Security model
 
-## Main Features
-- Manage multiple vaults, each in a separate folder
-- Encrypt and decrypt files using the AES-GCM algorithm
-- Password and recovery key (word list) protection
-- Password reset with recovery key
-- Executable file created with PyInstaller
+- Scrypt derives a 256-bit key from the password with the existing project parameters.
+- AES-GCM remains the authenticated encryption primitive.
+- Each file receives a random data key. The data key is wrapped by the vault master key.
+- The master key is wrapped by the password and, when enabled, by the TOTP secret.
+- TOTP secrets are stored through the operating system keyring: Windows Credential Manager or the Linux Secret Service backend.
+- TOTP uses the standard `otpauth://totp` format, six digits, SHA-1 and a 30-second period. The QR code and the manual secret can be imported into Apple Passwords, Google Authenticator and compatible applications.
 
-## Creating the exe manually
+## TOTP modes
+
+Each vault has independent settings:
+
+- Password only
+- Password or time-based code
+- Password and time-based code together
+
+TOTP setup is available from Settings while the vault is unlocked. The secret is never written into the `.zlock` file.
+
+## Mounting and workspaces
+
+On Windows, an unlocked workspace is assigned the first available drive letter using `subst`. On systems without an unprivileged drive-mount facility, ZLockCore opens the encrypted vault in a private temporary workspace instead. Locking unmounts the workspace, repacks the directory into the `.zlock` container and removes the temporary files.
+
+Existing folder-based vaults remain importable and use the same Scrypt and AES-GCM primitives. New vaults use `.zlock` containers and preserve nested folders.
+
+## Run from source
+
 ```sh
-   pip install pyinstaller
-   ```
+python -m pip install -r requirements.txt
+python main.py
+```
+
+## Build
 
 ```sh
-   pyinstaller --clean --onedir --noconsole --noupx --icon=icon.ico main.py
-   ```
-## Installation and Running
+python -m PyInstaller --clean --noconfirm --onedir --noconsole --noupx --icon=icon.ico main.py
+```
 
-Find the latest version of the program at: https://github.com/zoardgodor/ZLockCore/releases For Windows, download the ZLockCore_installer_[version].exe for a standard system-wide installation, or the ZLockCore_[version].zip file. (For Linux, use the ZLockCore_[version]_LINUX.zip file.) For the installer, follow the on-screen instructions. For the ZIP, extract its contents to a folder and run the executable binary. (On Linux, first allow it to run as a program. Type the following into the terminal: chmod +X [The name of the executable binary])
+See [make_executable_from_py.txt](make_executable_from_py.txt) for the same commands.
 
-(The installer was created using software called Inno Setup Compiler.)
+## Languages
 
-# Running main.py:
+Hungarian and English translations are included. `more_languages.json` can contain additional language dictionaries; missing keys fall back to English.
 
-1. **Python 3.8+ required**
-2. Install the required packages:
-   ```sh
-   pip install cryptography
-   ```
-3. Run the program:
-   ```sh
-   python main.py
-   ```
+## License
 
-## Usage
-1. **Create a new vault**
-   - Click the "New Vault" button
-   - Enter a name, choose a folder, set a password
-   - (Recommended) Generate a recovery key: write it down or save it in a secure place!
-2. **Unlock a vault**
-   - Select the vault, then click the "Unlock" button and enter the password
-3. **Add files**
-   - Click on the "Show Vault" button. You can drag files and folders here.
-4. **Lock the vault**
-   - Click the "Lock" button. The files will be encrypted again
-   - (If the safe contained a folder, the folder will be broken up, meaning that everything contained in the folder will be removed from it and the folder will be deleted. However, the files will not be lost.)
-5. **Open the vault**
-   - With the vault unlocked, click the "Show Vault" button
-6. **Reset password**
-   - "Reset Password" button: after entering the recovery key, a new password can be set
-7. **Import/rename/delete vault**
-   - In the list on the left, select the vault and then the appropriate button
-
-## File Structure
-- Each vault is located in a separate folder
-- Encrypted files: in the `storage/` folder, with `.cbox` extension
-- Decrypted files: in the `plain/` folder (only after unlocking)
-- Metadata: `vault.meta.json`, `vault_status.json`
-
-## License GPL v3.0
-See: https://github.com/zoardgodor/ZLockCore/blob/main/LICENSE.txt
-BY INSTALLING AND USING THE PROGRAM, YOU ACCEPT THE LICENSE AGREEMENT.
-
-## Developer Information
-- Main file: `main.py`
-- Encryption: Scrypt KDF + AES-GCM
-- GUI: Tkinter
-
-## Multilingual Support (Language Selection)
-
-The program supports multiple languages. By default, you can choose between English and Hungarian.
-
-You can select the language under the "Language" menu in the top right corner. The selected language will be saved and remembered after restarting the program.
-
-### Adding Your Own or More Languages
-
-If you want to add/use more languages, download the `more_languages.json` file and place this extension in the folder where `main.py` or `ZLockCore.exe` is located. (On Linux, place it in the folder containing the executable binary.)
-
-If this file is present, the program will automatically offer the languages listed in it in the menu. If not, only the default English and Hungarian will be available.
-
----
-
-**Created by Zoárd Gódor, developer of ZLockCore**
-
-
+GPL v3.0. See [LICENSE.txt](LICENSE.txt).
