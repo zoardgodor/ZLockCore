@@ -2,247 +2,259 @@
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
-    <title>ZLockCore – Vault Manager</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ZLockCore – többplatformos, titkosított széfkezelő alkalmazás.">
+    <title>ZLockCore – Titkosított széfkezelő</title>
     <style>
+        :root {
+            color-scheme: dark;
+            --bg: #07111f;
+            --panel: #0e1d31;
+            --panel-light: #132943;
+            --text: #e7eef8;
+            --muted: #a9b8cb;
+            --accent: #62b0ff;
+            --accent-dark: #2474c7;
+            --border: rgba(151, 190, 232, .18);
+        }
+
+        * { box-sizing: border-box; }
+
         body {
             margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: #0f172a;
-            color: #e5e7eb;
-            line-height: 1.6;
-        }
-
-        header {
-            background: linear-gradient(135deg, #2563eb, #1e40af);
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-        }
-
-        header p {
-            margin-top: 10px;
-            font-size: 1.2rem;
-            opacity: 0.9;
+            background: radial-gradient(circle at top, #122b49 0, var(--bg) 48%);
+            color: var(--text);
+            font-family: Inter, Segoe UI, Arial, sans-serif;
+            line-height: 1.65;
         }
 
         nav {
             display: flex;
             justify-content: flex-end;
-            padding: 10px 20px;
-            background: #020617;
+            gap: 8px;
+            max-width: 1120px;
+            margin: auto;
+            padding: 18px 24px 0;
         }
 
         nav button {
-            background: none;
-            border: 1px solid #2563eb;
-            color: #e5e7eb;
-            padding: 6px 12px;
-            margin-left: 10px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 7px 14px;
+            background: rgba(14, 29, 49, .8);
+            color: var(--text);
             cursor: pointer;
-            border-radius: 4px;
         }
 
-        nav button:hover {
-            background: #2563eb;
-        }
+        nav button:hover,
+        nav button.active { background: var(--accent-dark); border-color: var(--accent); }
 
-        main {
-            max-width: 1000px;
+        header {
+            max-width: 1120px;
             margin: auto;
-            padding: 40px 20px;
+            padding: 64px 24px 48px;
         }
 
-        section {
-            margin-bottom: 50px;
+        .eyebrow {
+            color: var(--accent);
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            font-size: .82rem;
         }
 
-        h2 {
-            color: #93c5fd;
-            margin-bottom: 15px;
+        h1 { margin: 10px 0; font-size: clamp(2.4rem, 7vw, 5rem); line-height: 1.05; }
+        header p { max-width: 720px; margin: 18px 0 0; color: var(--muted); font-size: 1.2rem; }
+
+        main { max-width: 1120px; margin: auto; padding: 0 24px 64px; }
+        section { margin: 28px 0; }
+        h2 { margin-top: 0; color: var(--accent); }
+        h3 { margin-bottom: 6px; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
         }
 
-        ul {
-            padding-left: 20px;
+        .card {
+            padding: 22px;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background: rgba(14, 29, 49, .78);
         }
 
+        .card p { margin: 8px 0 0; color: var(--muted); }
+        ul { padding-left: 22px; }
+        li { margin: 6px 0; }
+
+        .code {
+            display: block;
+            overflow-x: auto;
+            padding: 16px 18px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: #050b14;
+            color: #c9e3ff;
+            font-family: Consolas, "Courier New", monospace;
+        }
+
+        .buttons { display: flex; flex-wrap: wrap; gap: 12px; }
         .buttons a {
             display: inline-block;
-            margin-right: 15px;
-            margin-top: 10px;
-            padding: 12px 20px;
-            background: #2563eb;
+            padding: 11px 17px;
+            border-radius: 10px;
+            background: var(--accent-dark);
             color: white;
+            font-weight: 700;
             text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
         }
-
-        .buttons a:hover {
-            background: #1d4ed8;
-        }
+        .buttons a.secondary { background: var(--panel-light); border: 1px solid var(--border); }
+        .buttons a:hover { background: #3189df; }
 
         footer {
-            background: #020617;
-            padding: 20px;
+            padding: 28px 24px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
             text-align: center;
-            font-size: 0.9rem;
-            color: #9ca3af;
         }
 
-        .lang {
-            display: none;
-        }
+        .lang { display: none; }
+        .lang.active { display: block; }
+        code { color: #c9e3ff; }
 
-        .lang.active {
-            display: block;
-        }
-
-        code {
-            background: #020617;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: Consolas, monospace;
+        @media (max-width: 600px) {
+            nav { justify-content: center; }
+            header { padding-top: 42px; }
         }
     </style>
 </head>
 <body>
+    <nav aria-label="Language selection">
+        <button id="huButton" class="active" type="button" onclick="setLang('hu')">Magyar</button>
+        <button id="enButton" type="button" onclick="setLang('en')">English</button>
+    </nav>
 
-<nav>
-    <button onclick="setLang('hu')">Magyar</button>
-    <button onclick="setLang('en')">English</button>
-</nav>
+    <header>
+        <div class="lang active" id="huHeader">
+            <div class="eyebrow">Biztonságos fájlkezelés</div>
+            <h1>ZLockCore</h1>
+            <p>Többplatformos, titkosított széfkezelő PySide6 felülettel.</p>
+        </div>
+        <div class="lang" id="enHeader">
+            <div class="eyebrow">Secure file storage</div>
+            <h1>ZLockCore</h1>
+            <p>A cross-platform encrypted vault manager with a PySide6 interface.</p>
+        </div>
+    </header>
 
-<header>
-    <h1>ZLockCore</h1>
-    <p>Secure Vault Manager – titkosított fájlszéf egyszerűen</p>
-</header>
+    <main>
+        <div class="lang active" id="hu">
+            <section>
+                <h2>Mi az a ZLockCore?</h2>
+                <p>A ZLockCore fájlokat tárol titkosított <code>.zlock</code> konténerekben. A konténer megőrzi a fájlneveket, almappákat és fájltartalmakat, miközben a feloldott munkaterület egyszerűen használható.</p>
+            </section>
 
-<main>
+            <section>
+                <h2>Fő funkciók</h2>
+                <div class="grid">
+                    <div class="card"><h3>Titkosított konténerek</h3><p>AES-GCM titkosítás és Scrypt-alapú kulcsszármaztatás.</p></div>
+                    <div class="card"><h3>Jelszavas védelem</h3><p>A jelszó a széf főkulcsának védelmére szolgál.</p></div>
+                    <div class="card"><h3>Recovery kód</h3><p>Beállítás esetén a recovery kód segítségével visszaállítható a jelszó.</p></div>
+                    <div class="card"><h3>TOTP</h3><p>Választható jelszó, jelszó vagy TOTP, illetve jelszó és TOTP együtt.</p></div>
+                </div>
+            </section>
 
-    <div id="hu" class="lang active">
+            <section>
+                <h2>Támogatott TOTP-módok</h2>
+                <ul>
+                    <li>Csak jelszó</li>
+                    <li>Jelszó vagy időalapú kód</li>
+                    <li>Jelszó és időalapú kód együtt</li>
+                </ul>
+                <p>A csak időalapú feloldás nem támogatott. A TOTP-titok az operációs rendszer kulcstartójában tárolódik.</p>
+            </section>
 
-        <section>
-            <h2>Mi az a ZLockCore?</h2>
-            <p>
-                A <strong>ZLockCore</strong> egy grafikus felületű fájlszéf-kezelő alkalmazás,
-                amely lehetővé teszi fájlok biztonságos, erős titkosítással történő tárolását.
-                A széfek jelszóval és opcionális recovery kulccsal védettek.
-            </p>
-        </section>
+            <section>
+                <h2>Futtatás forrásból</h2>
+                <pre class="code">python -m pip install -r requirements.txt
+python main.py</pre>
+            </section>
 
-        <section>
-            <h2>Fő funkciók</h2>
-            <ul>
-                <li>Több széf kezelése külön mappákban</li>
-                <li>Fájlok titkosítása és visszafejtése (AES-GCM)</li>
-                <li>Jelszavas védelem</li>
-                <li>Recovery kulcs (szólista) támogatás</li>
-                <li>Jelszó visszaállítása recovery kulccsal</li>
-                <li>Széfek importálása, átnevezése, törlése</li>
-                <li>Drag & drop fájlkezelés</li>
-            </ul>
-        </section>
+            <section>
+                <h2>Build</h2>
+                <pre class="code">python -m PyInstaller --clean --noconfirm --onedir --noconsole --noupx --icon=icon.ico main.py</pre>
+            </section>
 
-        <section>
-            <h2>Technológiák</h2>
-            <ul>
-                <li>Python 3</li>
-                <li>Tkinter (GUI)</li>
-                <li>Scrypt KDF</li>
-                <li>AES-GCM titkosítás</li>
-                <li>PyInstaller</li>
-            </ul>
-        </section>
+            <section>
+                <h2>Letöltés és dokumentáció</h2>
+                <div class="buttons">
+                    <a href="https://github.com/zoardgodor/ZLockCore/releases" target="_blank" rel="noopener">Releases</a>
+                    <a class="secondary" href="https://github.com/zoardgodor/ZLockCore" target="_blank" rel="noopener">GitHub / README</a>
+                </div>
+            </section>
+        </div>
 
-        <section>
-            <h2>Letöltés és dokumentáció</h2>
-            <div class="buttons">
-                <a href="https://github.com/zoardgodor/ZLockCore/releases" target="_blank">Letöltés (Releases)</a>
-                <a href="https://github.com/zoardgodor/ZLockCore" target="_blank">GitHub / README</a>
-            </div>
-        </section>
+        <div class="lang" id="en">
+            <section>
+                <h2>What is ZLockCore?</h2>
+                <p>ZLockCore stores files in encrypted <code>.zlock</code> containers. Containers preserve file names, nested folders and file contents while providing a convenient unlocked workspace.</p>
+            </section>
 
-        <section>
-            <h2>Többnyelvűség</h2>
-            <p>
-                A program alapértelmezetten magyar és angol nyelvet támogat.
-                További nyelvek a <code>more_languages.json</code> fájl segítségével adhatók hozzá.
-            </p>
-        </section>
+            <section>
+                <h2>Main features</h2>
+                <div class="grid">
+                    <div class="card"><h3>Encrypted containers</h3><p>AES-GCM encryption with Scrypt-based key derivation.</p></div>
+                    <div class="card"><h3>Password protection</h3><p>The password protects the vault master key.</p></div>
+                    <div class="card"><h3>Recovery code</h3><p>When configured, the recovery code can be used to reset the password.</p></div>
+                    <div class="card"><h3>TOTP</h3><p>Choose password, password or TOTP, or password and TOTP together.</p></div>
+                </div>
+            </section>
 
-    </div>
+            <section>
+                <h2>Supported TOTP modes</h2>
+                <ul>
+                    <li>Password only</li>
+                    <li>Password or time-based code</li>
+                    <li>Password and time-based code together</li>
+                </ul>
+                <p>Time-based-code-only unlocking is not supported. TOTP secrets are stored in the operating system keyring.</p>
+            </section>
 
-    <div id="en" class="lang">
+            <section>
+                <h2>Run from source</h2>
+                <pre class="code">python -m pip install -r requirements.txt
+python main.py</pre>
+            </section>
 
-        <section>
-            <h2>What is ZLockCore?</h2>
-            <p>
-                <strong>ZLockCore</strong> is a graphical file vault manager
-                designed to securely store your files using strong encryption.
-                Vaults are protected by a password and an optional recovery key.
-            </p>
-        </section>
+            <section>
+                <h2>Build</h2>
+                <pre class="code">python -m PyInstaller --clean --noconfirm --onedir --noconsole --noupx --icon=icon.ico main.py</pre>
+            </section>
 
-        <section>
-            <h2>Main Features</h2>
-            <ul>
-                <li>Manage multiple vaults in separate folders</li>
-                <li>File encryption and decryption (AES-GCM)</li>
-                <li>Password protection</li>
-                <li>Recovery key (word list) support</li>
-                <li>Password reset via recovery key</li>
-                <li>Import, rename, and delete vaults</li>
-                <li>Drag & drop file handling</li>
-            </ul>
-        </section>
+            <section>
+                <h2>Download and documentation</h2>
+                <div class="buttons">
+                    <a href="https://github.com/zoardgodor/ZLockCore/releases" target="_blank" rel="noopener">Releases</a>
+                    <a class="secondary" href="https://github.com/zoardgodor/ZLockCore" target="_blank" rel="noopener">GitHub / README</a>
+                </div>
+            </section>
+        </div>
+    </main>
 
-        <section>
-            <h2>Technologies</h2>
-            <ul>
-                <li>Python 3</li>
-                <li>Tkinter (GUI)</li>
-                <li>Scrypt KDF</li>
-                <li>AES-GCM encryption</li>
-                <li>PyInstaller</li>
-            </ul>
-        </section>
+    <footer>
+        <span class="lang active" id="huFooter">© ZLockCore – Gódor Zoárd</span>
+        <span class="lang" id="enFooter">© ZLockCore – Gódor Zoárd</span>
+    </footer>
 
-        <section>
-            <h2>Download & Documentation</h2>
-            <div class="buttons">
-                <a href="https://github.com/zoardgodor/ZLockCore/releases" target="_blank">Download (Releases)</a>
-                <a href="https://github.com/zoardgodor/ZLockCore" target="_blank">GitHub / README</a>
-            </div>
-        </section>
-
-        <section>
-            <h2>Multilingual Support</h2>
-            <p>
-                The program supports English and Hungarian by default.
-                Additional languages can be added using the <code>more_languages.json</code> file.
-            </p>
-        </section>
-
-    </div>
-
-</main>
-
-<footer>
-    © ZLockCore – Created by Gódor Zoárd
-</footer>
-
-<script>
-    function setLang(lang) {
-        document.querySelectorAll('.lang').forEach(el => el.classList.remove('active'));
-        document.getElementById(lang).classList.add('active');
-        document.documentElement.lang = lang;
-    }
-</script>
-
+    <script>
+        function setLang(lang) {
+            document.querySelectorAll('.lang').forEach((element) => element.classList.remove('active'));
+            document.querySelectorAll('#' + lang + ', #' + lang + 'Header, #' + lang + 'Footer').forEach((element) => element.classList.add('active'));
+            document.getElementById('huButton').classList.toggle('active', lang === 'hu');
+            document.getElementById('enButton').classList.toggle('active', lang === 'en');
+            document.documentElement.lang = lang;
+        }
+    </script>
 </body>
 </html>
