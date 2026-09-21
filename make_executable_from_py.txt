@@ -1,2 +1,6 @@
 python -m pip install -r requirements.txt
 python -m PyInstaller --clean --noconfirm --onedir --noconsole --noupx --icon=icon.ico --add-data "zlockcore/version.txt;zlockcore" main.py
+# Linux
+# Ubuntu/Debian runtime dependencies for the Qt xcb platform plugin:
+# sudo apt install libxcb-cursor0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-render-util0 libxcb-xkb1 libxkbcommon-x11-0
+./.venv/bin/python -m PyInstaller --clean --noconfirm --onedir --noconsole --noupx --icon=icon.ico --add-data "zlockcore/version.txt:zlockcore" --name main-linux main.py
