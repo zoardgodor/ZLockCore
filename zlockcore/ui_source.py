@@ -4,7 +4,7 @@ import secrets
 from pathlib import Path
 
 import qrcode
-from PySide6.QtCore import QUrl, Qt
+from PySide6.QtCore import QThreadPool, QUrl, Qt
 from PySide6.QtGui import QAction, QDesktopServices, QImage, QPixmap
 from PySide6.QtWidgets import QApplication, QComboBox, QDialog, QDialogButtonBox, QFileDialog, QFormLayout, QGroupBox, QHBoxLayout, QLabel, QLineEdit, QListWidget, QListWidgetItem, QMainWindow, QMessageBox, QPushButton, QToolButton, QVBoxLayout, QWidget
 
@@ -14,6 +14,7 @@ from .keyring_store import KeyringError
 from .mount import MountManager
 from .registry import VaultRegistry
 from .vault_service import VaultError, VaultService
+from .version import UPDATE_URL, VersionCheckTask, app_version
 
 
 def _password_eye_button(translator: Translator, field: QLineEdit) -> QToolButton:
@@ -305,8 +306,10 @@ class MainWindow(QMainWindow):
         self.mount_manager = MountManager()
         self.active: dict[str, tuple[bytes, object]] = {}
         self.current: str | None = None
+        self._version_task: VersionCheckTask | None = None
         self._build_ui()
         self.refresh()
+        self._start_version_check()
 
     def _build_ui(self):
         self.setMinimumSize(980, 620)
@@ -316,6 +319,10 @@ class MainWindow(QMainWindow):
             action = QAction(self.t.t(label), self)
             action.triggered.connect(lambda checked=False, value=code: self.set_language(value))
             menu.addAction(action)
+        self.update_action = QAction('Update', self)
+        self.update_action.setVisible(False)
+        self.update_action.triggered.connect(self.open_update_page)
+        self.menuBar().addAction(self.update_action)
         central = QWidget()
         self.setCentralWidget(central)
         root = QHBoxLayout(central)
@@ -361,6 +368,19 @@ class MainWindow(QMainWindow):
     def set_language(self, language: str):
         self.t.set_language(language)
         self.setWindowTitle(self.t.t('title'))
+
+    def _start_version_check(self):
+        self._version_task = VersionCheckTask(app_version())
+        self._version_task.signals.finished.connect(self._on_version_check_finished)
+        QThreadPool.globalInstance().start(self._version_task)
+
+    def _on_version_check_finished(self, remote_version: str):
+        if remote_version:
+            self.update_action.setVisible(True)
+        self._version_task = None
+
+    def open_update_page(self):
+        QDesktopServices.openUrl(QUrl(UPDATE_URL))
 
     def refresh(self):
         self.list.clear()

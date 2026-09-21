@@ -13,6 +13,9 @@ TEXT = {
     },
 }
 
+# Keep the language menu label in English even when Hungarian is selected.
+TEXT['hu']['language'] = 'Language'
+
 
 class Translator:
     def __init__(self, resource_dir: Path | None = None):
@@ -36,10 +39,10 @@ class Translator:
 
     def _load_language(self) -> str:
         try:
-            value = json.loads(self.config_path.read_text(encoding='utf-8')).get('language', 'hu')
-            return value if value in self.translations else 'hu'
+            value = json.loads(self.config_path.read_text(encoding='utf-8')).get('language', 'en')
+            return value if value in self.translations else 'en'
         except Exception:
-            return 'hu'
+            return 'en'
 
     def set_language(self, language: str) -> None:
         if language in self.translations:

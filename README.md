@@ -37,7 +37,7 @@ python main.py
 ## Build
 
 ```sh
-python -m PyInstaller --clean --noconfirm --onedir --noconsole --noupx --icon=icon.ico main.py
+python -m PyInstaller --clean --noconfirm --onedir --noconsole --noupx --icon=icon.ico --add-data "zlockcore/version.txt;zlockcore" main.py
 ```
 
 See [make_executable_from_py.txt](make_executable_from_py.txt) for the same commands.
